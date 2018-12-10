@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Phan Anh Su Co</title>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
+  <link rel="stylesheet" href="css/app.min.css" />
+  <link rel="stylesheet" href="css/responsive.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+  <script src="http://localhost:8001/target/target-script-min.js"></script>
+    <script src="cordova.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="js/app.min.js"></script>
+</head>
+
+<body ng-app="PhanAnhSuCo" ng-controller="MainController">
+  <div class="app">
+
+    <div class="navbar navbar-app navbar-absolute-top">
+
+      <div class="navbar-brand navbar-brand-center">
+        Thành Phố <strong>Hà Nội</strong>
+      </div>
+
+      <div class="btn-group pull-left">
+        <div class="btn btn-navbar">
+          <a href ui-toggle='uiSidebarLeft'><i class="fa fa-bars" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div class="btn-group pull-right">
+        <div class="btn btn-navbar">
+          <div class="search">
+            <div class="icon">
+              <span>
+                <svg viewBox="0 0 40 40">
+                  <path d="M3,3 L37,37"></path>
+                </svg>
+              </span>
+            </div>
+            <div class="field">
+              <input type="text" ng-change="search()" ng-model="dataSearch" ng-Trim="false" placeholder="Tìm kiếm...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar navbar-app navbar-absolute-bottom">
+      <div class="btn-group justified">
+        <a href="#/" class="btn btn-navbar active-pasc" ng-click="changeTab('#/')"><i class="fa fa-home"></i></a>
+        <a href="#!gioithieu" class="btn btn-navbar" ng-click="changeTab('#!gioithieu')"><i class="fa fa-file-text-o"></i></a>
+        <a href="#!phananh" class="btn btn-navbar" ng-click="changeTab('#!phananh')"><i class="fa fa-pencil-square-o"></i></a>
+        <a href="#!thongke" class="btn btn-navbar" ng-click="changeTab('#!thongke')"><i class="fa fa-bar-chart"></i></a>
+        <a href="#!hdsd" class="btn btn-navbar" ng-click="changeTab('#!hdsd')"><i class="fa fa-file-text-o"></i></a>
+      </div>
+    </div>
+
+    <!-- App Body -->
+    <div class="app-body">
+      <div class="app-content">
+        <ng-view></ng-view>
+      </div>
+    </div>
+
+  </div><!-- ~ .app -->
+
+  <div class="sidebar sidebar-left">
+    <div class="scrollable">
+      <h1 class="scrollable-header app-name">Lĩnh Vực Phản Ánh</h1>
+      <div class="scrollable-content">
+        <div class="list-group">
+          <a ng-class="!clickBtn{{key}} ? 'list-group-item isChecked': 'list-group-item'" href="javascript:void(0)"
+            ng-repeat="(key, value) in linhvuc track by $index" ng-click="getDataLV(key)">
+            {{value.title}}<i class="fa fa-check pull-right" style="color: green;" ng-show="!clickBtn{{key}}"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ui-yield-to="modals"></div>
+</body>
+
+</html>
